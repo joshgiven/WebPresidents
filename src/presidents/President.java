@@ -10,6 +10,7 @@ public class President {
 	private String party;
 	private String factoid;
 	private String imagePath;
+	private String thumbnailPath;
 	
 	public President() { }
 	
@@ -83,5 +84,13 @@ public class President {
 	
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
+	}
+
+	public String getThumbnailPath() { 
+		return thumbnailPath;
+	}
+	
+	public void setThumbnailPath(String thumbnailPath) {
+		this.thumbnailPath = thumbnailPath;
 	}
 }

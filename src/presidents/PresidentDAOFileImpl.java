@@ -40,21 +40,22 @@ public class PresidentDAOFileImpl implements PresidentDAO {
 		try(BufferedReader input = new BufferedReader(new FileReader(fileName))) {
 			String line = null;
 			while((line = input.readLine()) != null) {
-				String[] tokens = line.split(",");
+				String[] tokens = line.split("|");
 				
 				President p = new President();
 				try {
 					p.setOrdinal(Integer.parseInt(tokens[0]));
 					p.setFirstName(tokens[1]);
-					p.setLastName(tokens[2]);
-					p.setFullName(String.format("%s %s", tokens[1], tokens[2]));
-					p.setStartTerm(Integer.parseInt(tokens[3]));
-					p.setEndTerm(Integer.parseInt(tokens[4]));
+					p.setLastName(tokens[3]);
+					p.setFullName(String.join(" ", tokens[1], tokens[2], tokens[3]));
+					p.setStartTerm(Integer.parseInt(tokens[4].split("-")[0]));
+					p.setEndTerm(Integer.parseInt(tokens[4].split("-")[1]));
 					p.setParty(tokens[5]);
 					p.setFactoid(tokens[6]);
 					p.setImagePath(tokens[7]);
+					p.setThumbnailPath(tokens[7].replace("large_img", "thumbnail"));
 				}
-				catch(NumberFormatException e) {
+				catch(NumberFormatException | ArrayIndexOutOfBoundsException e) {
 					continue;
 				}
 				
