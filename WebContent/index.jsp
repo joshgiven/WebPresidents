@@ -12,7 +12,7 @@
 	<h1>Presidential Gallery</h1>
 	<div class="flexcontainer">
 	<c:forEach var='pres' items='${presidents}'>
-		<div class="flexitem"> <a href="pres.do?view=pres&id=${pres.ordinal}"><img src="${pres.thumbnailPath}"> </a>
+		<div class="flexitem"> <a href="lookup.do?view=pres&id=${pres.ordinal}"><img src="${pres.thumbnailPath}"> </a>
 		<p>${pres.thumbnailPath}</p>
 		<p>${pres.ordinal}: ${pres.fullName} ${pres.startTerm}-${pres.endTerm} </p></div>>
 	</c:forEach>

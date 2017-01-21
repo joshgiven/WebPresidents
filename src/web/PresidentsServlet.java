@@ -26,29 +26,42 @@ public class PresidentsServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		PresidentList list = presidentDAO.getFilteredPresidents( p -> true );
+
 		String mode = req.getParameter("view");
 		if(mode != null && mode.equals("pres")) {
 			try {
-			int ordinal = Integer.parseInt(req.getParameter("id"));
-			
-			PresidentTrio trio = new PresidentTrio();
-			trio.setCurrent(presidentDAO.getPresident(ordinal));
-			trio.setPrevious(presidentDAO.getPresident(ordinal-1));
-			trio.setNext(presidentDAO.getPresident(ordinal+1));
-			
-			req.getRequestDispatcher("/presidents.jsp").forward(req, resp);
+				int ordinal = Integer.parseInt(req.getParameter("id"));
+				
+				PresidentTrio trio = new PresidentTrio();
+				trio.setCurrent(presidentDAO.getPresident(ordinal));
+				trio.setPrevious(presidentDAO.getPresident(ordinal-1));
+				trio.setNext(presidentDAO.getPresident(ordinal+1));
+	
+				req.getSession().setAttribute("trio", trio);
+				req.getSession().setAttribute("presidents", list);
+				req.getRequestDispatcher("/presidents.jsp").forward(req, resp);
+				
+				return;
 			}
 			catch(NumberFormatException e) {
 				// error.jsp?
-				return;
+				// return;
+				e.printStackTrace(System.err);
 			}
 		}
-		else {
-			PresidentList list = presidentDAO.getFilteredPresidents( p -> true );
-			//PresidentList list = presidentDAO.getFilteredPresidents( p -> p.getOrdinal() == 1 );
-			req.getSession().setAttribute("presidents", list);
-			req.getRequestDispatcher("/index.jsp").forward(req, resp);
-		}
 		
+		
+		// Predicate<President> filter = p -> p.getParty().equals("Republican") ;
+		// Predicate<President> filter = p -> p.getParty().equals("Democrat") ;
+		Predicate<President> filter = p -> true ;
+		PresidentList filterList = presidentDAO.getFilteredPresidents(filter);
+		
+		req.getSession().setAttribute("filter", filterList);
+		req.getSession().setAttribute("presidents", list);
+		req.getRequestDispatcher("/index.jsp").forward(req, resp);
 	}
+	
+	private static final long serialVersionUID = 1L;
+
 }

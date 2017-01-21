@@ -33,7 +33,12 @@ public class PresidentDAOFileImpl implements PresidentDAO {
 
 	@Override
 	public President getPresident(int ordinal) {
-		ordinal = (ordinal + presidents.size())%presidents.size();
+		while(ordinal < 1) 
+			ordinal += presidents.size();
+		
+		while(ordinal > presidents.size())
+			ordinal -= presidents.size();
+		
 		return presidents.get(ordinal);
 	}
 	
