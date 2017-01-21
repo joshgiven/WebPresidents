@@ -1,6 +1,7 @@
 package presidents;
 
 import java.io.*;
+import java.util.Collections;
 import java.util.function.*;
 
 public class PresidentDAOFileImpl implements PresidentDAO {
@@ -26,11 +27,13 @@ public class PresidentDAOFileImpl implements PresidentDAO {
 			}
 		}
 		
+		list.sort((a,b) -> Integer.compare(a.getOrdinal(), b.getOrdinal()));
 		return list;
 	}
 
 	@Override
 	public President getPresident(int ordinal) {
+		ordinal = (ordinal + presidents.size())%presidents.size();
 		return presidents.get(ordinal);
 	}
 	
