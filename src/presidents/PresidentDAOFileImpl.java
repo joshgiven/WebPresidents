@@ -56,7 +56,7 @@ public class PresidentDAOFileImpl implements PresidentDAO {
 					p.setParty(tokens[5]);
 					p.setFactoid(tokens[6]);
 					p.setImagePath(tokens[7]);
-					p.setThumbnailPath(tokens[7].replace("large_img", "thumbnail"));
+					p.setThumbnailPath(tokens[7].replace("large_image", "thumbnail"));
 				}
 				catch(NumberFormatException | ArrayIndexOutOfBoundsException e) {
 					e.printStackTrace(System.err);
