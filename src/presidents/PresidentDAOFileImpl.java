@@ -27,7 +27,7 @@ public class PresidentDAOFileImpl implements PresidentDAO {
 			}
 		}
 		
-		list.sort((a,b) -> Integer.compare(a.getOrdinal(), b.getOrdinal()));
+		//list.sort((a,b) -> Integer.compare(a.getOrdinal(), b.getOrdinal()));
 		return list;
 	}
 
@@ -43,7 +43,7 @@ public class PresidentDAOFileImpl implements PresidentDAO {
 		try(BufferedReader input = new BufferedReader(new FileReader(fileName))) {
 			String line = null;
 			while((line = input.readLine()) != null) {
-				String[] tokens = line.split("|");
+				String[] tokens = line.split("\\|");
 				
 				President p = new President();
 				try {
@@ -59,6 +59,7 @@ public class PresidentDAOFileImpl implements PresidentDAO {
 					p.setThumbnailPath(tokens[7].replace("large_img", "thumbnail"));
 				}
 				catch(NumberFormatException | ArrayIndexOutOfBoundsException e) {
+					e.printStackTrace(System.err);
 					continue;
 				}
 				

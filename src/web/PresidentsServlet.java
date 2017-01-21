@@ -27,7 +27,7 @@ public class PresidentsServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		String mode = req.getParameter("view");
-		if(mode.equals("pres")) {
+		if(mode != null && mode.equals("pres")) {
 			try {
 			int ordinal = Integer.parseInt(req.getParameter("id"));
 			
@@ -45,6 +45,7 @@ public class PresidentsServlet extends HttpServlet {
 		}
 		else {
 			PresidentList list = presidentDAO.getFilteredPresidents( p -> true );
+			//PresidentList list = presidentDAO.getFilteredPresidents( p -> p.getOrdinal() == 1 );
 			req.getSession().setAttribute("presidents", list);
 			req.getRequestDispatcher("/index.jsp").forward(req, resp);
 		}
