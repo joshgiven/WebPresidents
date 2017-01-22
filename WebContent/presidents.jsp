@@ -33,17 +33,19 @@
 	<div class='curr'>
 		<div class='image'>
 			<img src='${trio.current.imagePath}' alt='${trio.current.fullName}'>
+			<%-- <img
+				src='img/big/<fmt:formatNumber pattern="00" value="${trio.current.ordinal}" />.jpeg'
+				alt='${trio.current.fullName}'> --%>
 		</div>
 
-		<img
-			src='img/big/<fmt:formatNumber pattern="00" value="${trio.current.ordinal}" />.jpeg'
-			alt='${trio.current.fullName}'>
-		<ul>
-			<li>${trio.current.fullName}</li>
-			<li>${trio.current.startTerm}- ${trio.current.endTerm}</li>
-			<li>${trio.current.party}</li>
-			<li>${trio.current.factoid}</li>
-		</ul>
+		<div id="presInfo">
+			<ul>
+				<li>${trio.current.fullName}</li>
+				<li>${trio.current.startTerm}-${trio.current.endTerm}</li>
+				<li>${trio.current.party}</li>
+				<li>${trio.current.factoid}</li>
+			</ul>
+		</div>
 	</div>
 
 	<div id="navButtons">

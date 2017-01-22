@@ -1,13 +1,24 @@
 @CHARSET "UTF-8";
 
 .image{
+	float: left;
 	background-color: black;
 	width: 475px;
 	height: 475px;
 }
 
 .curr{
+	display: inline-flex;
 	background-color: gray;
-	width: 70%;
-	height: 70%;
+	width: 1000px;
+	height: auto;
+}
+
+.presInfo{
+	float: right;
+}
+
+.navButtons{
+	display: inline-flex;
+	align-content: space-between;
 }
