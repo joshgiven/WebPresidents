@@ -49,7 +49,7 @@ public class PresidentDAOFileImpl implements PresidentDAO {
 			String line = null;
 			while((line = input.readLine()) != null) {
 				String[] tokens = line.split("\\|");
-				
+
 				President p = new President();
 				try {
 					p.setOrdinal(Integer.parseInt(tokens[0]));
