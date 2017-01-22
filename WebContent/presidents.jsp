@@ -7,6 +7,7 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="css/presidentsStyles.css">
+<link rel="stylesheet" type="text/css" href="css/styles.css">
 <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
 <title>Presidential Gallery - ${trio.current.ordinal} -
 	${trio.current.fullName}</title>
@@ -29,25 +30,28 @@
 		</form>
 	</div>
 
-
-	<div class='curr'>
-		<div class='image'>
-			<img src='${trio.current.imagePath}' alt='${trio.current.fullName}'>
-			<%-- <img
+	<div class="mainContainer">
+	<a href='lookup.do?view=pres&id=${trio.previous.ordinal}'><img src="${trio.previous.thumbnailPath}"></a>
+		<div class='curr'>
+			<div class='image'>
+				<img src='${trio.current.imagePath}' alt='${trio.current.fullName}'>
+				<%-- <img
 				src='img/big/<fmt:formatNumber pattern="00" value="${trio.current.ordinal}" />.jpeg'
 				alt='${trio.current.fullName}'> --%>
-		</div>
+			</div>
 
-		<div class="presInfo">
-			<ul>
-				<li>${trio.current.fullName}</li>
-				<li>${trio.current.startTerm}-${trio.current.endTerm}</li>
-				<li>${trio.current.party}</li>
-				<li>${trio.current.factoid}</li>
-			</ul>
+			<div class="presInfo">
+				<ul>
+					<li>${trio.current.fullName}</li>
+					<li>${trio.current.startTerm}-${trio.current.endTerm}</li>
+					<li>${trio.current.party}</li>
+					<li>${trio.current.factoid}</li>
+				</ul>
+			</div>
 		</div>
+		<a id="nextPres" href='lookup.do?view=pres&id=${trio.next.ordinal}'><img src="${trio.next.thumbnailPath}"> </a>
 	</div>
-	
+
 
 	<div class="navButtons">
 <!-- 		<div class='prev'>

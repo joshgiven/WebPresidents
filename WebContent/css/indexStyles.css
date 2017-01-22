@@ -1,0 +1,25 @@
+.flexcontainer{
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  flex-flow: row wrap;
+  background-color: gray;
+  padding: 1.3em;
+  border: 3px solid black;
+  border-radius: 10px;
+}
+
+.flexitem {
+  width: 200px;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 5%;
+  background-color: rgb(170, 170, 170);
+  margin: .5em;
+  padding-top: .5em;
+}
+
+.flexitem p{
+  width: 185px;
+
+}

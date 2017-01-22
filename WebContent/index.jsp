@@ -5,18 +5,25 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="css/indexStyles.css">
+<link rel="stylesheet" type="text/css" href="css/styles.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Presidential Gallery</title>
 </head>
 <body>
 	<h1>Presidential Gallery</h1>
 	<div class="flexcontainer">
-	<c:forEach var='pres' items='${presidents}'>
-		<div class="flexitem"> <a href="lookup.do?view=pres&id=${pres.ordinal}"><img src="${pres.thumbnailPath}"> </a>
-<%-- 		<p>${pres.thumbnailPath}</p>
- --%>		<p>${pres.ordinal}: ${pres.fullName} <br>
- 			 ${pres.startTerm}-${pres.endTerm} </p></div>
-	</c:forEach>
-	</div>>
+		<c:forEach var='pres' items='${presidents}'>
+			<div class="flexitem">
+				<a href="lookup.do?view=pres&id=${pres.ordinal}"><img
+					src="${pres.thumbnailPath}"> </a>
+				<%-- 		<p>${pres.thumbnailPath}</p>
+ --%>
+				<p>${pres.ordinal}:
+					${pres.fullName} <br> ${pres.startTerm}-${pres.endTerm}
+				</p>
+			</div>
+		</c:forEach>
+	</div>
 </body>
 </html>
