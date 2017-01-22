@@ -9,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import presidents.*;
 import presidents.PresidentDAO.PresidentList;
@@ -27,58 +26,33 @@ public class PresidentsServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		// setup global presidents list
+		// setup global presidents list (if necessary)
 		if(req.getServletContext().getAttribute("presidents") == null) {
 			PresidentList fullList = presidentDAO.getAllPresidents();
 			req.getServletContext().setAttribute("presidents", fullList);
 		}
 		
-		// setup filter attribute
+		// setup filters
 		String[] filterParams = req.getParameterValues("filter");
 		if(filterParams != null && filterParams.length > 0)
 		{
 			Predicate<President> filter = p -> true;
+			List<String> filterStrings = new ArrayList<>();
 			
-			for (String param : filterParams) {
-				String[] tokens = param.split(":");
-				if(tokens.length != 3) {
-					continue;
-				}
-				
-				String entity = tokens[0];
-				String op   = tokens[1];
-				String arg  = tokens[2];
-				
-				Predicate<President> subFilter = null;
-				switch(entity) {
-				case "party":
-				case "first-name":
-				case "last-name":
-					subFilter = generateStringFilter(entity, op, arg);
-					break;
-
-				case "term-length":
-				case "term-start":
-				case "term-end":
-					subFilter = generateIntegerFilter(entity, op, arg);
-					break;
-
-				default:
-				}
-				
-				if(subFilter != null) {
-					filter = filter.and(subFilter);
-				}
+			filter = generateFilter(filter, filterParams, filterStrings);
+			
+			PresidentList filteredPresidents = null;
+			if(filter != null) {
+				filteredPresidents = presidentDAO.getFilteredPresidents(filter);
+				req.getSession().setAttribute("presidents", filteredPresidents);
 			}
-			
-			PresidentList filterList = presidentDAO.getFilteredPresidents(filter);
-			req.getSession().setAttribute("presidents", filterList);
+			req.getSession().setAttribute("filters", filterStrings);
 		}
 
-		
+		// present presidents view if selected...
 		String mode = req.getParameter("view");
 		if(mode != null && mode.equals("pres")) {
-			
+			// select the president list to use
 			List<Object> path = Arrays.asList( 
 					req.getSession().getAttribute("presidents"),
 					req.getServletContext().getAttribute("presidents") );
@@ -88,8 +62,8 @@ public class PresidentsServlet extends HttpServlet {
 			
 			try {
 				int ordinal = Integer.parseInt(req.getParameter("id"));
-				
 				President current = presidentDAO.getPresident(ordinal);
+				
 				PresidentTrio trio = new PresidentTrio();
 				trio.setCurrent(current);
 				trio.setPrevious(presidentDAO.getPrevious(list, current));
@@ -107,11 +81,75 @@ public class PresidentsServlet extends HttpServlet {
 			}
 		}
 		
-		// serve index view
-		//req.getSession().setAttribute("presidents", list);
+		// ... otherwise, serve index view
 		req.getRequestDispatcher("/index.jsp").forward(req, resp);
 	}
 	
+	private Predicate<President> generateFilter(Predicate<President> filter, String[] filterParams, List<String> filterStrings) {
+		for (String param : filterParams) {
+			String origParam = param;
+
+			boolean doOr = false;
+			if(param.startsWith("|")) {
+				doOr = true;
+				param = param.replaceAll("^\\|", "");
+			}
+			
+			boolean doNegate = false;
+			if(param.startsWith("-")) {
+				doNegate = true;
+				param = param.replaceAll("^-", "");
+			}
+			
+			String[] tokens = param.split(":");
+			if(tokens.length != 3) {
+				continue;
+			}
+			
+			String entity = tokens[0];
+			String op   = tokens[1];
+			String arg  = tokens[2];
+			
+			Predicate<President> subFilter = null;
+			switch(entity) {
+			case "party":
+			case "first-name":
+			case "last-name":
+				subFilter = generateStringFilter(entity, op, arg);
+				break;
+
+			case "term-length":
+			case "term-start":
+			case "term-end":
+				subFilter = generateIntegerFilter(entity, op, arg);
+				break;
+
+			case "none":
+				subFilter = null;
+				filter = null;
+				break;
+				
+			case "":
+			default:
+			}
+			
+			if(filter == null)    break;
+			if(subFilter == null) continue;
+			
+			if(doNegate)
+				subFilter = subFilter.negate();
+			
+			if(doOr)
+				filter = filter.or(subFilter);
+			else
+				filter = filter.and(subFilter);
+
+			filterStrings.add(origParam);
+		}
+		
+		return filter;
+	}
+
 	private Predicate<President> generateIntegerFilter(String entity, String op, String arg) {
 		Function<President,Integer> presFunc = null;
 
