@@ -6,7 +6,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="css/styles.css">
+<link rel="stylesheet" type="text/css" href="css/presidentsStyles.css">
 <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
 <title>Presidential Gallery - ${trio.current.ordinal} -
 	${trio.current.fullName}</title>
@@ -38,7 +38,7 @@
 				alt='${trio.current.fullName}'> --%>
 		</div>
 
-		<div id="presInfo">
+		<div class="presInfo">
 			<ul>
 				<li>${trio.current.fullName}</li>
 				<li>${trio.current.startTerm}-${trio.current.endTerm}</li>
@@ -47,24 +47,20 @@
 			</ul>
 		</div>
 	</div>
+	
 
-	<div id="navButtons">
-		<div class='prev'>
-			<button name="previous" value="previous"
-				formaction="lookup.do?view=pres&id=${trio.previous.ordinal}">Previous</button>
-			<%-- <a href='lookup.do?view=pres&id=${trio.previous.ordinal}'>previous</a> --%>
-		</div>
-
-		<div class='home'>
-			<button name="home" value="home" formaction="lookup.do?view=index">Home</button>
-			<%-- <a href='lookup.do?view=index'>home</a> --%>
-		</div>
-
-		<div class='next'>
-			<button name="next" value="next"
-				formaction="lookup.do?view=pres&id=${trio.next.ordinal}">Next</button>
-			<%-- <a href='lookup.do?view=pres&id=${trio.next.ordinal}'>next</a> --%>
-		</div>
-	</div>
+	<div class="navButtons">
+<!-- 		<div class='prev'>
+ -->			<a href='lookup.do?view=pres&id=${trio.previous.ordinal}'>< Previous</a>
+<!-- 		</div>
+ -->
+<!-- 		<div class='home'>
+ -->			<a href='lookup.do?view=index'>Home</a>
+<!-- 		</div>
+ -->
+<!-- 		<div class='next'>
+ -->			<a href='lookup.do?view=pres&id=${trio.next.ordinal}'>Next ></a>
+<!-- 		</div>
+ -->	</div>
 </body>
 </html>

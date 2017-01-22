@@ -1,0 +1,38 @@
+@CHARSET "UTF-8";
+
+body{
+	background-color: pink;
+}
+.image{
+	background-color: black;
+	/*flex: 1 1 450px;*/
+}
+
+.presInfo{
+	text-align: justify;
+	font-size: 1.3em;
+}
+
+.curr{
+	align-items: center;
+	display: -webkit-flex;
+	display: flex;
+	background-color: gray;
+	width: 90%;
+	flex-flow: row;
+	border: 2px solid black;
+	padding-right: 1em;
+}
+
+.navButtons{
+	display: flex;
+	flex-flow: row;
+	justify-content: space-between;
+	width: 90%;
+	border: 2px solid orange;
+}
+
+.navButtons a{
+	flex-shrink: 1;
+	border: 2px solid green;
+}
