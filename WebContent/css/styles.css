@@ -1,1 +1,13 @@
 @CHARSET "UTF-8";
+
+.image{
+	background-color: black;
+	width: 475px;
+	height: 475px;
+}
+
+.curr{
+	background-color: gray;
+	width: 70%;
+	height: 70%;
+}
