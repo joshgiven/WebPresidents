@@ -25,7 +25,7 @@
 	</div>
 	
 	<div class='curr'>
-		<img src='${trio.current.imagePath}' alt='${trio.current.fullName}'>
+		<img src='img/big/<fmt:formatNumber pattern="00" value="${trio.current.ordinal}" />.jpeg' alt='${trio.current.fullName}'>
 		<ul>
 			<li>${trio.current.fullName}</li>
 			<li>${trio.current.startTerm} - ${trio.current.endTerm}</li>
