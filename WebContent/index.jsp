@@ -28,7 +28,7 @@
 				</select>
 			</form>
 			<form method='GET' action='lookup.do'>
-				Party:<select name='filter' class="dropdownList" onchange="this.form.submit()">
+				<p id="partyLabel">Party: </p><select name='filter' class="dropdownList" onchange="this.form.submit()">
 					<c:forEach var='party' items='${filterPreParties}'>
 						<option value='${party.value}'>${party.key}</option>
 					</c:forEach>
