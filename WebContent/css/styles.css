@@ -11,4 +11,12 @@ h1 {
 	font-size: 3em;
 	text-shadow: 2px 2px 4px #000000;
 }
+
+.dropdownList{
+   height: 34px;
+   background: rgba(150, 0, 0, 0.66);
+   border: 1px solid #ccc;
+   font-size: 1em;
+   color: #ffffff;
 }
+

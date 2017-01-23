@@ -17,6 +17,12 @@
 	padding-right: 1em;
 }
 
+#presDropdownList {
+	width: 20%;
+	margin-left: 40%;
+	margin-right: 40%;
+}
+
 .presInfo{
 	text-align: center;
 	font-size: 1.3em;
@@ -70,38 +76,6 @@
 
 #nextPres:hover{
 	opacity: 1.0;
-}
-
-#dropdownList{
-   width: 15%;
-   height: 34px;
-   overflow: hidden;
-   background: rgba(150, 0, 0, 0.66);
-   border: 1px solid #ccc;
-   font-size: 1em;
-   color: #ffffff;
-   margin-left: 42.5%;
-   margin-right: 42.5%;
-}
-
-button{
-  -webkit-border-radius: 28;
-  -moz-border-radius: 28;
-  border-radius: 28px;
-  font-family: Arial;
-  width: 10%;
-  color: #ffffff;
-  border: 1px solid #ccc;
-  font-size: 1em;
-  background: rgba(150, 0, 0, 0.66);
-  padding: 10px 20px 10px 20px;
-  text-decoration: none;
-  margin-left: 45%;
-  margin-right: 45%;
-}
-
-button:hover {
-  background: rgba(255, 255, 255, 0.65);
 }
 
 .navButtons{

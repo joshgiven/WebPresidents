@@ -18,15 +18,14 @@
 
 		<div class='chooser'>
 			<form method='GET' action='lookup.do'>
-				<input type='hidden' name='view' value='pres'> <select id="dropdownList"
-					name='id'>
+				<input type='hidden' name='view' value='pres'> <select class="dropdownList"
+					id="presDropdownList" name='id' onchange="this.form.submit()">
 					<c:forEach var='president' items='${presidents}'>
 						<option value='${president.ordinal}'
 							<c:if test='${president.ordinal == trio.current.ordinal}'>selected</c:if>>${president.ordinal}<p> - </p>
 							${president.lastName}</option>
 					</c:forEach>
 				</select>
-				<button>Go</button>
 			</form>
 		</div>
 

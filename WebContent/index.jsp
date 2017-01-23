@@ -14,18 +14,26 @@
 <body class="background">
 	<h1>Presidential Gallery</h1>
 	<div class="flexcontainer">
+		<div class='chooser'></div>
 		<div class="filter">
-			<select>
-				<option name="filter" value=${value}>${key}</option>
-			</select>
-			<!-- TO DO: add filters. Page layout for the filter div is already stubbed out -->
-			<form method='GET' action='lookup.do'>
-				Party:<select name='filter'>
-				<c:forEach var='party' items='${filterPreParties}'>
-					<option value='${party.value}'>${party.key}</option>
-				</c:forEach>
+			<form method='GET' action='lookup.do' >
+				<input type='hidden' name='view' value='pres'> <select
+					class="dropdownList" name='id' onchange="this.form.submit()">
+					<c:forEach var='president' items='${presidents}'>
+						<option value='${president.ordinal}'
+							<c:if test='${president.ordinal == trio.current.ordinal}'>selected</c:if>>${president.ordinal}<p>
+								-</p> ${president.lastName}
+						</option>
+					</c:forEach>
 				</select>
-				<input type='submit'>
+			</form>
+			<form method='GET' action='lookup.do'>
+				Party:<select name='filter' class="dropdownList" onchange="this.form.submit()">
+					<c:forEach var='party' items='${filterPreParties}'>
+						<option value='${party.value}'>${party.key}</option>
+					</c:forEach>
+				</select> 
+			<!-- 	<input type='submit'> -->
 			</form>
 		</div>
 		<div class="imageContainer">
