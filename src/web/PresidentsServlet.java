@@ -52,10 +52,26 @@ public class PresidentsServlet extends HttpServlet {
 			List<Object> path = Arrays.asList( 
 					req.getSession().getAttribute("presidents"),
 					req.getServletContext().getAttribute("presidents") );
-			
+
+	
+//		System.out.println("sess " + req.getSession().getAttributeNames());
+//		Enumeration<String> attrs =  req.getSession().getAttributeNames();
+//		while(attrs.hasMoreElements()) {
+//			String attr = attrs.nextElement();
+//		    System.out.println(attr + " : " + req.getSession().getAttribute(attr));
+//		}
+//		
+//		System.out.println("ctxt " + req.getServletContext().getAttributeNames());
+//		attrs = req.getServletContext().getAttributeNames();
+//		while(attrs.hasMoreElements()) {
+//			String attr = attrs.nextElement();
+//		    System.out.println(attr + " : " + req.getServletContext().getAttribute(attr));
+//		}
+		
 			PresidentList list = 
 					(PresidentList) path.stream().filter(x -> x != null).findFirst().get();
 			
+			System.out.println(list);
 			try {
 				int ordinal = Integer.parseInt(req.getParameter("id"));
 				President current = presidentDAO.getPresident(ordinal);
@@ -82,9 +98,10 @@ public class PresidentsServlet extends HttpServlet {
 	}
 	
 	private void initContextAttributes(HttpServletRequest req) {
-		
+		System.out.println("init attrs");
 		// setup global presidents list (if necessary)
 		if(req.getServletContext().getAttribute("presidents") == null) {
+			System.out.println("init pres attr");
 			PresidentList fullList = presidentDAO.getAllPresidents();
 			req.getServletContext().setAttribute("presidents", fullList);
 		}

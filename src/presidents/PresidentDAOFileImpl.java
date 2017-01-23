@@ -26,7 +26,7 @@ public class PresidentDAOFileImpl implements PresidentDAO {
 				list.add(p);
 			}
 		}
-		
+
 		//list.sort((a,b) -> Integer.compare(a.getOrdinal(), b.getOrdinal()));
 		return list;
 	}
