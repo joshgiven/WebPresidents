@@ -60,6 +60,7 @@
 	opacity: 0.5;
 	position: absolute;
 	left: -75px;
+	border: 2px solid white;
 }
 
 #prevPres:hover{
@@ -72,6 +73,8 @@
 	opacity: 0.5;
 	position: absolute;
 	right: -75px;
+	border: 2px solid white;
+	
 }
 
 #nextPres:hover{
