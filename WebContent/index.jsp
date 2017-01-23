@@ -30,10 +30,9 @@
 			<form method='GET' action='lookup.do'>
 				<p id="partyLabel">Party: </p><select name='filter' class="dropdownList" onchange="this.form.submit()">
 					<c:forEach var='party' items='${filterPreParties}'>
-						<option value='${party.value}'>${party.key}</option>
+						<option value='${party.value}' <c:if test="${filters.contains(party.value) == true}">selected</c:if> >${party.key}</option>
 					</c:forEach>
 				</select> 
-			<!-- 	<input type='submit'> -->
 			</form>
 		</div>
 		<div class="imageContainer">
@@ -47,7 +46,6 @@
 				</div>
 			</c:forEach>
 		</div>
-
 	</div>
 </body>
 </html>
