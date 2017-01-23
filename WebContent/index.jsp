@@ -27,7 +27,7 @@
 				</select>
 			</form>
 			</div>
-		<div class="filters">
+		<!-- <div class="filters">
 			<form method='GET' action='lookup.do' name='filter'>
 	
 				<select name='field' class='dropdownList'>
@@ -45,8 +45,8 @@
 				<input type="submit" name="submit" value="fiter"> 
 				
 			</form>
-		</div>
-		<div class="filters">
+		</div> -->
+		<%-- <div class="filters">
 			<form method='GET' action='lookup.do' name='filter'>
 	
 				<select name='field' class='dropdownList'>
@@ -72,7 +72,7 @@
 					</c:forEach>
 				</select> 
 			</form>
-		</div>
+		</div> --%>
 		<div class="imageContainer">
 			<c:forEach var='pres' items='${presidents}'>
 				<div class="flexitem">
