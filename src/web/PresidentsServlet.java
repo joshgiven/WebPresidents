@@ -109,19 +109,39 @@ public class PresidentsServlet extends HttpServlet {
 		}
 		
 		// setup filter attributes
-		if(req.getServletContext().getAttribute("filter-int-ops") == null) {
-			req.getServletContext().setAttribute(
-					"filterIntOps", Arrays.asList("eq", "gt", "ge", "lt", "le"));
+		if(req.getServletContext().getAttribute("filterIntOps") == null) {
 			
+			Map<String,String> intProps = new TreeMap<>();
+			intProps.put("Term Length", "term-length");
+			intProps.put("Term Start", "term-start");
+			intProps.put("Term End", "term-end");
 			req.getServletContext().setAttribute(
-					"filterIntProps", Arrays.asList("party", "first-name", "last-name"));
+					"filterIntProps", intProps);
 			
+			Map<String,String> intOps = new TreeMap<>();
+			intOps.put("==", "eq");
+			intOps.put(">",  "gt");
+			intOps.put(">=", "ge");
+			intOps.put("<",  "lt");
+			intOps.put("<=", "le");
 			req.getServletContext().setAttribute(
-					"filterStringOps", Arrays.asList("equals", "contains", "starts-with", "ends-with"));
-			
-			req.getServletContext().setAttribute(
-					"filterStringProps", Arrays.asList("term-length", "term-start", "term-end"));
+					"filterIntOps", intOps);
 
+			Map<String,String> stringProps = new TreeMap<>();
+			stringProps.put("Party", "party");
+			stringProps.put("First Name", "first-name");
+			stringProps.put("Last Name", "last-name");
+			req.getServletContext().setAttribute(
+					"filterStringProps", stringProps);
+					
+			Map<String,String> stringOps = new TreeMap<>();
+			stringOps.put("equals", "equals");
+			stringOps.put("contains", "contains");
+			stringOps.put("starts with", "starts-with");
+			stringOps.put("ends with", "ends-with");
+			req.getServletContext().setAttribute(
+					"filterStringOps", stringOps);
+			
 			Map<String, String> prePartyMap = new TreeMap<>();
 			for(String party : presidentDAO.getParties()) {
 				prePartyMap.put(party, "party:equals:" + party);

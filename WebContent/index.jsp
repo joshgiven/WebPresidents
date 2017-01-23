@@ -31,15 +31,14 @@
 			<form method='GET' action='lookup.do' name='filter'>
 	
 				<select name='field' class='dropdownList'>
-					<option value='first-name'>First Name</option>
-					<option value='last-name'>Last Name</option>
-					<option value='fullName'>Full Name</option>
-					<option value='factoid'>Factoid</option>
+				<c:forEach var="field" items="${filterStringProps}">
+					<option value='${field.value}'>${field.key}</option>
+				</c:forEach>
 				</select> 
 				<select name='operator' class="dropdownList">
-					<option value=''>Contains</option>
-					<option value='-'>Doesn't Contain</option>
-					<option value='/'>Contains Any</option>
+				<c:forEach var="op" items="${filterStringOps}">
+					<option value='${op.value}'>${op.key}</option>
+				</c:forEach>
 				</select> 
 				<input type="text" name="operand">
 				<input type="submit" name="submit" value="fiter"> 
@@ -47,20 +46,20 @@
 			</form>
 		</div>
 		<div class="filters">
-			<form method='GET' action='lookup.do' name='filter'>
+			<form method='GET' action='lookup.do'>
 	
 				<select name='field' class='dropdownList'>
-					<option value='termStart'>Term Start</option>
-					<option value='termEnd'>Term End</option>
-					<option value='termLength'>Term Length</option>
+				<c:forEach var="field" items="${filterIntProps}">
+					<option value='${field.value}'>${field.key}</option>
+				</c:forEach>
 				</select> 
 				<select name='operator' class="dropdownList">
-					<option value='=='>Equals</option>
-					<option value="<">Was Before</option>
-					<option value=">">Was After</option>
+				<c:forEach var="field" items="${filterIntOps}">
+					<option value='${field.value}'>${field.key}</option>
+				</c:forEach>
 				</select> 
 				<input type="text" name="operand">
-				<input type="submit" name="submit" value="fiter"> 
+				<button>add filter</button>
 				
 			</form>
 		</div>
