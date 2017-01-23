@@ -30,13 +30,16 @@ public class PresidentsServlet extends HttpServlet {
 		
 		// process filters
 		String[] filterParams = req.getParameterValues("filter");
+		
 		String newFilter = String.join(":", req.getParameter("field"), 
 		                                    req.getParameter("operator"), 
 		                                    req.getParameter("operand"));
 		
 		List<String> filterParamsList = 
 				(filterParams != null) ? new ArrayList<String>(Arrays.asList(filterParams)) : new ArrayList<String>();
-		filterParamsList.add(newFilter);
+		if(!newFilter.contains("null")) {
+			filterParamsList.add(newFilter);
+		}
 		filterParams = filterParamsList.toArray(new String[0]);
 		
 		if(filterParams != null && filterParams.length > 0)
@@ -65,7 +68,6 @@ public class PresidentsServlet extends HttpServlet {
 			PresidentList list = 
 					(PresidentList) path.stream().filter(x -> x != null).findFirst().get();
 			
-			System.out.println(list);
 			try {
 				int ordinal = Integer.parseInt(req.getParameter("id"));
 				President current = presidentDAO.getPresident(ordinal);
