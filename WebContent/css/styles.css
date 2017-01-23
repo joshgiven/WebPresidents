@@ -1,7 +1,14 @@
-body{
-
+.background {
+	background-image: url("../img/bg/flagBackground2.jpg");
+	background-repeat: no-repeat;
+	background-position: fixed;
 }
 
-h1{
-  text-align: center;
+h1 {
+	font-family: Snell Roundhand, cursive;
+	text-align: center;
+	color: white;
+	font-size: 3em;
+	text-shadow: 2px 2px 4px #000000;
+}
 }

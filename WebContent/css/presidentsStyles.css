@@ -1,28 +1,45 @@
 @CHARSET "UTF-8";
 
-body{
-	background-color: pink;
-}
-
 .image{
-	background-color: black;
-	/*flex: 1 1 450px;*/
+	background-color: rgba(255, 255, 255);
 }
 
 .curr{
 	align-items: center;
 	display: -webkit-flex;
 	display: flex;
-	background-color: gray;
-	flex: 3;
+	border: 3px solid white;
+	background-color: rgba(255, 255, 255, 0.49);
+	width: 75%;
+	margin-left: auto;
+	margin-right: auto;
 	flex-flow: row;
-	border: 2px solid black;
 	padding-right: 1em;
 }
 
 .presInfo{
-	text-align: justify;
+	text-align: center;
 	font-size: 1.3em;
+}
+
+.presInfo ul{
+	list-style-type: none;
+}
+
+#firstName{
+	margin-top: 0px;
+	padding-top: 0px;
+	color: white;
+	font-size: 2em;
+	text-shadow: 2px 2px 4px #000000;
+}
+
+#termRange{
+	margin-bottom: 20px;
+}
+
+#factoid{
+	text-align: justify;
 }
 
 .mainContainer{
@@ -32,22 +49,80 @@ body{
 	flex-flow: row;
 }
 
-.mainContainer a{
+#prevPres{
 	flex: 1;
+	opacity: 0.5;
+	position: absolute;
+	left: -75px;
+}
+
+#prevPres:hover{
+	opacity: 1.0;
 }
 
 #nextPres{
 	display: flex;
 	justify-content: flex-end;
+	opacity: 0.5;
+	position: absolute;
+	right: -75px;
+}
+
+#nextPres:hover{
+	opacity: 1.0;
+}
+
+#dropdownList{
+   width: 15%;
+   height: 34px;
+   overflow: hidden;
+   background: rgba(150, 0, 0, 0.66);
+   border: 1px solid #ccc;
+   font-size: 1em;
+   color: #ffffff;
+   margin-left: 42.5%;
+   margin-right: 42.5%;
+}
+
+button{
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  width: 10%;
+  color: #ffffff;
+  border: 1px solid #ccc;
+  font-size: 1em;
+  background: rgba(150, 0, 0, 0.66);
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  margin-left: 45%;
+  margin-right: 45%;
+}
+
+button:hover {
+  background: rgba(255, 255, 255, 0.65);
 }
 
 .navButtons{
 	display: flex;
+	text-align: center;
 	flex-flow: row;
 	justify-content: space-between;
-	width: 90%;
 }
 
 .navButtons a{
 	flex-shrink: 1;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	color: white;
+	font-size: 2em;
+	font-weight: bold;
+	letter-spacing: 1px;
+	padding: 10px 15px 8px;
+}
+
+.navButtons a:hover{
+	background: rgba(255, 255, 255, 0.65);
 }
