@@ -29,8 +29,10 @@ public class PresidentsServlet extends HttpServlet {
 		initContextAttributes(req);
 		
 		// process filters
-		String[] filterParams = req.getParameterValues("filter");
-		if(filterParams != null && filterParams.length > 0)
+//		String[] filterParams = req.getParameterValues("filter");
+		String[] filterParams = {req.getParameter("field"), req.getParameter("operator"), req.getParameter("operand")};
+		System.out.println(req.getParameterMap());
+		if(filterParams[0] != null /*&& filterParams.length > 0*/)
 		{
 			Predicate<President> filter = p -> true;
 			List<String> filterStrings = new ArrayList<>();

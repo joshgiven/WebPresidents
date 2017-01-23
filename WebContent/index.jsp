@@ -14,8 +14,7 @@
 <body class="background">
 	<h1>Presidential Gallery</h1>
 	<div class="flexcontainer">
-		<div class='chooser'></div>
-		<div class="filter">
+		<div class='chooser'>
 			<form method='GET' action='lookup.do' >
 				<input type='hidden' name='view' value='pres'> <select
 					class="dropdownList" name='id' onchange="this.form.submit()">
@@ -27,6 +26,45 @@
 					</c:forEach>
 				</select>
 			</form>
+			</div>
+		<div class="filters">
+			<form method='GET' action='lookup.do' name='filter'>
+	
+				<select name='field' class='dropdownList'>
+					<option value='first-name'>First Name</option>
+					<option value='last-name'>Last Name</option>
+					<option value='fullName'>Full Name</option>
+					<option value='factoid'>Factoid</option>
+				</select> 
+				<select name='operator' class="dropdownList">
+					<option value=''>Contains</option>
+					<option value='-'>Doesn't Contain</option>
+					<option value='/'>Contains Any</option>
+				</select> 
+				<input type="text" name="operand">
+				<input type="submit" name="submit" value="fiter"> 
+				
+			</form>
+		</div>
+		<div class="filters">
+			<form method='GET' action='lookup.do' name='filter'>
+	
+				<select name='field' class='dropdownList'>
+					<option value='termStart'>Term Start</option>
+					<option value='termEnd'>Term End</option>
+					<option value='termLength'>Term Length</option>
+				</select> 
+				<select name='operator' class="dropdownList">
+					<option value='=='>Equals</option>
+					<option value="<">Was Before</option>
+					<option value=">">Was After</option>
+				</select> 
+				<input type="text" name="operand">
+				<input type="submit" name="submit" value="fiter"> 
+				
+			</form>
+		</div>
+		<div class="filters">
 			<form method='GET' action='lookup.do'>
 				<p id="partyLabel">Party: </p><select name='filter' class="dropdownList" onchange="this.form.submit()">
 					<c:forEach var='party' items='${filterPreParties}'>
