@@ -77,9 +77,14 @@ public interface PresidentDAO {
 		return getValueList(presidents, p -> p.getEndTerm() - p.getStartTerm() );
 	}
 	
-	public default <T> List<T> getValueList(PresidentList presidents, Function<President,T> pred) {
-		List<T> values = new ArrayList<>();
+	public default <T extends Comparable<T>> List<T> getValueList(PresidentList presidents, Function<President,T> func) {
+		Set<T> values = new HashSet<>();
+		for(President p : presidents) {
+			values.add(func.apply(p));
+		}
 		
-		return values;
+		List<T> valuesList = new ArrayList<>(values);
+		Collections.sort(valuesList, (a,b) -> a.compareTo(b));
+		return valuesList;
 	}
 }

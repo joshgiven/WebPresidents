@@ -92,30 +92,33 @@ public class PresidentsServlet extends HttpServlet {
 		// setup filter attributes
 		if(req.getServletContext().getAttribute("filter-int-ops") == null) {
 			req.getServletContext().setAttribute(
-					"filter-int-ops", Arrays.asList("eq", "gt", "ge", "lt", "le"));
+					"filterIntOps", Arrays.asList("eq", "gt", "ge", "lt", "le"));
 			
 			req.getServletContext().setAttribute(
-					"filter-int-props", Arrays.asList("party", "first-name", "last-name"));
+					"filterIntProps", Arrays.asList("party", "first-name", "last-name"));
 			
 			req.getServletContext().setAttribute(
-					"filter-string-ops", Arrays.asList("equals", "contains", "starts-with", "ends-with"));
+					"filterStringOps", Arrays.asList("equals", "contains", "starts-with", "ends-with"));
 			
 			req.getServletContext().setAttribute(
-					"filter-string-props", Arrays.asList("term-length", "term-start", "term-end"));
+					"filterStringProps", Arrays.asList("term-length", "term-start", "term-end"));
 
 			Map<String, String> prePartyMap = new HashMap<>();
 			for(String party : presidentDAO.getParties()) {
 				prePartyMap.put(party, "party:equals:" + party);
 			}
+			System.out.println(presidentDAO.getPresidentsMap().size());
+			System.out.println(presidentDAO.getAllPresidents().size());
+			System.out.println(presidentDAO.getParties().size());
 			req.getServletContext().setAttribute(
-					"filter-pre-parties", prePartyMap );
+					"filterPreParties", prePartyMap );
 			
 			Map<String, String> preTermLengthMap = new HashMap<>();
 			preTermLengthMap.put("Short (less than 4 years)",      "term-length:lt:4");
 			preTermLengthMap.put("Single-Term (4 years)",          "term-length:eq:4");
 			preTermLengthMap.put("Multi-Term (more than 4 years)", "term-length:gt:4");
 			req.getServletContext().setAttribute(
-					"filter-pre-term-lengths", preTermLengthMap );
+					"filterPreTermLengths", preTermLengthMap );
 			
 			Map<String, String> preByCenturyMap = new HashMap<>();
 			preByCenturyMap.put("1700s", "term-start:lt:1800");
@@ -123,7 +126,7 @@ public class PresidentsServlet extends HttpServlet {
 			//preByCenturyMap.put("1900s", "term-start:ge:1900&filter=term-start:lt:2000");
 			preByCenturyMap.put("2000s", "term-start:ge:1999");
 			req.getServletContext().setAttribute(
-					"filter-pre-term-centuries", preByCenturyMap );
+					"filterPreTermCenturies", preByCenturyMap );
 			
 			Map<String, String> preByFirstLetter = new HashMap<>();
 			for(String lname : presidentDAO.getLastNames()) {
@@ -131,7 +134,7 @@ public class PresidentsServlet extends HttpServlet {
 				preByFirstLetter.put(init, "last-name:starts-with:" + init);
 			}
 			req.getServletContext().setAttribute(
-					"filter-pre-initials", preByFirstLetter );
+					"filterPreInitials", preByFirstLetter );
 		}
 	}
 

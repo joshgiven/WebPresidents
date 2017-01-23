@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,6 +17,14 @@
 		<div class="filter">
 			<p>ADD FILTERS HERE</p>
 			<!-- TO DO: add filters. Page layout for the filter div is already stubbed out -->
+			<form method='GET' action='lookup.do'>
+				Party:<select name='filter'>
+				<c:forEach var='party' items='${filterPreParties}'>
+					<option value='${party.value}'>${party.key}</option>
+				</c:forEach>
+				</select>
+				<input type='submit'>
+			</form>
 		</div>
 		<div class="imageContainer">
 			<c:forEach var='pres' items='${presidents}'>
