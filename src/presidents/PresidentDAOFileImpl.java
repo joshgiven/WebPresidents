@@ -12,7 +12,7 @@ public class PresidentDAOFileImpl implements PresidentDAO {
 	}
 
 	@Override
-	public PresidentMap getAllPresidents() {
+	public PresidentMap getPresidentsMap() {
 		return presidents;
 	}
 

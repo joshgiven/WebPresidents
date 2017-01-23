@@ -1,6 +1,8 @@
 package presidents;
 
-public class President {
+import java.io.Serializable;
+
+public class President implements Serializable{
 	private int ordinal;
 	private String firstName;
 	private String lastName;
@@ -93,4 +95,6 @@ public class President {
 	public void setThumbnailPath(String thumbnailPath) {
 		this.thumbnailPath = thumbnailPath;
 	}
+
+	private static final long serialVersionUID = 1L;
 }
