@@ -39,3 +39,10 @@ input[type=submit]{
 	font-size: 1em;
 	border-radius: 5px;
 }
+
+button{
+	color: rgba(150, 0, 0, 1.0);
+	background: rgba(255, 255, 255, 1.0);
+	font-size: 1em;
+	border-radius: 5px;
+}
