@@ -14,7 +14,9 @@
 	<h1>Presidential Gallery</h1>
 	<div class="flexcontainer">
 		<div class="filter">
-			<p>ADD FILTERS HERE</p>
+			<select>
+				<option name="filter" value=${value}>${key}</option>
+			</select>
 			<!-- TO DO: add filters. Page layout for the filter div is already stubbed out -->
 		</div>
 		<div class="imageContainer">
